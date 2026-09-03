@@ -26,7 +26,9 @@ int main() {
   inputFile >> NTEST;
   int a, b;
   for (int i = 0; i < NTEST; i++) {
-    inputFile >> a >> b;
+    if (!(inputFile >> a >> b)) {
+      break;
+    }
     int count = 0;
     int sum = 0;
     for (int j = a; j <= b; j++) {

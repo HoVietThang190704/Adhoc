@@ -5,24 +5,18 @@
 #include <fstream>
 using namespace std;
 
-int findMin(int arr[], int N) {
-  int min = arr[0];
-    for(int i = 1; i < N; i++){
-        if(arr[i] < min){
-            min = arr[i];
-        }
-    }
-    return min;
-}
-
-int countOccurrences(int arr[], int N, int target) {
-  int count = 0;
-  for(int i = 0; i < N; i++) {
-    if(arr[i] == target) {
+void findMinAndCount(int arr[], int N) {
+  int minVal = arr[0];
+  int count = 1;
+  for(int i = 1; i < N; i++) {
+    if(arr[i] < minVal) {
+      minVal = arr[i];
+      count = 1;
+    } else if(arr[i] == minVal) {
       count++;
     }
   }
-  return count;
+  cout << minVal << " " << count << endl;
 }
 
 int main() {
@@ -43,11 +37,7 @@ int main() {
     for(int j = 0; j < N; j++) {
       inputFile >> arr[j];
     }
-
-    int minValue = findMin(arr, N);
-    int occurrences = countOccurrences(arr, N, minValue);
-
-    cout << minValue << " " << occurrences << endl;
+    findMinAndCount(arr, N);
   }
 
   return 0;
