@@ -5,17 +5,21 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <chrono>
 using namespace std;
 
 int isPrime(int n) {
   if (n <= 1) return 0;
-  for (int i = 2; i<= sqrt(n); i++) {
+  if (n == 2) return 1;
+  if (n % 2 == 0) return 0;
+  for (int i = 3; i <= sqrt(n); i += 2) {
     if (n % i == 0) return 0;
   }
   return 1;
 }
 
 int main() {
+  auto start = chrono::high_resolution_clock::now();
   ifstream inputFile("input.txt");
   if (!inputFile.is_open()) {
     cout << "Khong the mo file." << endl;
@@ -40,5 +44,8 @@ int main() {
     cout << count << " so nguyen to, tong = " << sum << endl;
   }
   inputFile.close();
+  auto end = chrono::high_resolution_clock::now();
+  chrono::duration<double, milli> durationMs = end - start;
+  cout << "Tong thoi gian chay: " << durationMs.count() << " ms\n";
   return 0;
 }
