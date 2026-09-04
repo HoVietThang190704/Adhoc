@@ -4,5 +4,6 @@
 *.ilk
 *.pdb
 *.idb
+*.txt
 
 .vscode/
